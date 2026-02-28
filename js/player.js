@@ -4,6 +4,9 @@ class Player {
         this.height = 10
         this.positionX = 50 - (this.width / 2)
         this.positionY = 0
+        this.velocidadY = 0
+        this.gravedad = 0.5
+        this.isJumping = false
         this.playerElem = null
         this.teclas = []
 
@@ -20,14 +23,40 @@ class Player {
     }
 
     applyMovement(){
-        if(this.teclas['ArrowRight']){
+        if(this.teclas['ArrowRight'] && this.positionX < (100 - this.width)){
             this.positionX++
         }
 
-        if(this.teclas['ArrowLeft']){
+        if(this.teclas['ArrowLeft'] && this.positionX > 0){
             this.positionX--
         }
 
+        if(this.teclas['ArrowDown']){
+            this.height = 5
+        } else {
+            this.height = 10
+        }
+
         this.updateUi()
+    }
+
+    jump(){
+        if(!this.isJumping){
+            this.velocidadY = 5
+            this.isJumping = true
+        }  
+    }
+
+    applyGravity(){
+        this.velocidadY -= this.gravedad
+
+        this.positionY += this.velocidadY
+
+        if(this.positionY <= 0){
+            this.positionY = 0
+            this.velocidadY = 0
+            this.isJumping = false
+        }
+
     }
 }
