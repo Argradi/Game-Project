@@ -12,10 +12,12 @@ class Player {
         this.isJumping = false
         this.isCrounching = false
         this.isInFloor = true
+        this.isRunning = false
         this.playerElem = document.getElementById('player')
         this.teclas = []
 
         this.updateUi()
+        this.changeImage()
     }
 
     updateUi(){
@@ -25,13 +27,31 @@ class Player {
         this.playerElem.style.bottom = this.positionY + 'vh'
     }
 
+    changeImage(){
+        if (!this.isInFloor) {
+            this.playerElem.src = this.velocidadY < 0
+                ? './assets/kenney_platformer-pack-redux/PNG/Players/Variable sizes/Blue/alienBlue_hit.png'
+                : './assets/kenney_platformer-pack-redux/PNG/Players/Variable sizes/Blue/alienBlue_jump.png';
+        } else if(this.isCrounching) {
+            this.playerElem.src = './assets/kenney_platformer-pack-redux/PNG/Players/Variable sizes/Blue/alienBlue_duck.png'
+        } else if(this.isRunning) {
+            this.playerElem.src = './assets/kenney_platformer-pack-redux/PNG/Players/Variable sizes/Blue/alienBlue_walk1.png'
+        } else {
+            this.playerElem.src = './assets/kenney_platformer-pack-redux/PNG/Players/Variable sizes/Blue/alienBlue_stand.png'
+        }
+    }
+
     applyMovement(){
         if(this.teclas['ArrowRight'] && this.positionX < (100 - this.width)){
             this.positionX += this.velocidadX
-        }
-
-        if(this.teclas['ArrowLeft'] && this.positionX > 0){
+            this.playerElem.style.transform = 'scaleX(1)';
+            this.isRunning = true
+        } else if(this.teclas['ArrowLeft'] && this.positionX > 0){
             this.positionX -= this.velocidadX
+            this.playerElem.style.transform = 'scaleX(-1)';
+            this.isRunning = true
+        } else {
+            this.isRunning = false
         }
 
         if(this.teclas['ArrowDown'] && !this.isJumping){
@@ -45,13 +65,17 @@ class Player {
         }
 
         this.updateUi()
+        this.changeImage()
     }
 
     jump(){
         if(!this.isJumping && !this.isCrounching && this.isInFloor){
             this.velocidadY = 6.5
             this.isJumping = true
-        }  
+            this.isInFloor = false
+        }
+
+        this.changeImage()
     }
 
     applyGravity(){
@@ -94,6 +118,7 @@ class Player {
         }
 
         this.updateUi()
+        this.changeImage()
     }
 
     pxToVh(px){
