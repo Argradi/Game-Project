@@ -6,6 +6,10 @@ class Enemy{
         this.positionY = Math.round(Math.random() * (100-this.height))
         this.enemyElem = null
 
+        setTimeout(() => {
+            this.removeEnemy()
+        },5000)
+
         this.createEnemy()
         this.updateUi()
     }
@@ -31,5 +35,9 @@ class Enemy{
         this.positionX++
 
         this.updateUi()
+    }
+
+    removeEnemy() {
+        this.enemyElem.remove()
     }
 }

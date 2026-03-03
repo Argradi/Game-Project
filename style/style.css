@@ -75,3 +75,7 @@ body{
 #puntuacion{
     margin-top: 0;
 }
+
+.bullet{
+    position: absolute;
+}

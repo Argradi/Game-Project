@@ -2,15 +2,22 @@ const player = new Player()
 
 const enemies = []
 
-setInterval(() => {
-    const enemy =  new Enemy()
-    enemies.push(enemy)
-}, 1000)
+const bullets = []
+
+// setInterval(() => {
+//     const enemy =  new Enemy()
+//     enemies.push(enemy)
+// }, 1000)
 
 document.addEventListener('keydown',(e) => {
     player.teclas[e.code] = true
     if(e.code === 'ArrowUp'){
         player.jump()
+    }
+    
+    if(e.code === 'Space'){
+        const bullet = new Bullet(player.positionX, player.width, player.positionY, player.height, player.scaleX)
+        bullets.push(bullet)
     }
 })
 
@@ -50,6 +57,10 @@ function animate(){
             localStorage.setItem('puntos_finales', puntos);
             location.href = './gameover.html'
         }
+    })
+
+    bullets.forEach((bullet) => {
+        bullet.move()
     })
 
     requestAnimationFrame(animate)

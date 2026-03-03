@@ -1,0 +1,47 @@
+class Bullet {
+    constructor(positionX, width, positionY, height, scaleX) {
+        this.width = 5
+        this.height = 2
+        this.positionX = positionX
+        this.positionY = positionY + (height / 2)
+        this.scaleX = scaleX
+        this.bullElem = null
+
+        setTimeout(() => {
+            this.removeBullet();
+        }, 1000);
+
+        this.createBullet()
+        this.updateUi()
+    }
+
+    createBullet() {
+        this.bullElem = document.createElement('img')
+        this.bullElem.src = './assets/kenney_platformer-pack-redux/PNG/Particles/fireball.png'
+        this.bullElem.style.transform = `scaleX(${this.scaleX})`
+        this.bullElem.className = 'bullet'
+
+        const parent = document.getElementById('board')
+        parent.appendChild(this.bullElem)
+    }
+
+    updateUi() {
+        this.bullElem.style.width = this.width + 'vw'
+        this.bullElem.style.height = this.height + 'vh'
+        this.bullElem.style.left = this.positionX + 'vw'
+        this.bullElem.style.bottom = this.positionY + 'vh'
+    }
+
+    move() {
+        if(this.scaleX === 1)
+            this.positionX++
+        else if(this.scaleX === -1)
+            this.positionX--
+
+        this.updateUi()
+    }
+
+    removeBullet() {
+        this.bullElem.remove()
+    }
+}
