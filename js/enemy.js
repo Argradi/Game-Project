@@ -1,9 +1,9 @@
 class Enemy{
     constructor(){
         this.width = 5
-        this.height = 15
+        this.height = 10
         this.positionX = -(this.width) +1
-        this.positionY = Math.round(Math.random() * 100)
+        this.positionY = Math.round(Math.random() * (100-this.height))
         this.enemyElem = null
 
         this.createEnemy()
@@ -11,7 +11,9 @@ class Enemy{
     }
 
     createEnemy(){
-        this.enemyElem = document.createElement('div')
+        this.enemyElem = document.createElement('img')
+        this.enemyElem.src = './assets/kenney_platformer-pack-redux/PNG/Enemies/Fly.png'
+        this.enemyElem.style.transform = 'scaleX(-1)'
         this.enemyElem.className = 'enemy'
 
         const parent = document.getElementById('board')

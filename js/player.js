@@ -1,5 +1,9 @@
 class Player {
     constructor(){
+        this.playerElem = document.getElementById('player')
+        if(!this.playerElem)
+            return
+        
         this.width = 5
         this.heightNormal = 17; 
         this.heightCrouch = this.heightNormal / 1.5;
@@ -13,7 +17,6 @@ class Player {
         this.isCrounching = false
         this.isInFloor = true
         this.isRunning = false
-        this.playerElem = document.getElementById('player')
         this.teclas = []
 
         this.updateUi()

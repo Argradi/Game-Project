@@ -2,18 +2,30 @@ body{
     margin: 0;
     padding: 0;
     height: 100vh;
-    background-color: blanchedalmond;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }
 
 #board{
     position: relative;
+    background-image: url('../assets/kenney_platformer-pack-redux/PNG/Backgrounds/colored_grass.png');
+    background-size: cover;
+    background-position: center;
     height: 100vh;
     width: 100vw;
     overflow: hidden;
+}
+
+#board2{
+    position: relative;
+    background-image: url('../assets/kenney_platformer-pack-redux/PNG/Backgrounds/blue_grass.png');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 #player{
@@ -22,13 +34,17 @@ body{
 
 .enemy{
     position: absolute;
-    background-color: red;
 }
 
 .platform{
     height: 8vh;
     width: 20vw;
-    background-color: burlywood;
+    display: flex;
+    flex-direction: row;
+}
+
+.platform img{
+    width: calc(100% / 3);
 }
 
 #platform1{
@@ -47,4 +63,15 @@ body{
     position: absolute;
     bottom: 60vh;
     left: 40vw;
+}
+
+#puntos{
+    position: absolute;
+    font-size: xx-large;
+    left: 0;
+    top: 0;
+}
+
+#puntuacion{
+    margin-top: 0;
 }

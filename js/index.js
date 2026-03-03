@@ -18,9 +18,26 @@ document.addEventListener('keyup',(e) => {
     player.teclas[e.code] = false
 })
 
+const puntosDiv = document.getElementById('puntos')
+let puntos = 0
+let puntuacion = 0
+let frames = 0
+
+const puntuacionDiv = document.getElementById('puntuacion')
+if (puntuacionDiv) {
+    const puntajeFinal = localStorage.getItem('puntos_finales');
+    puntuacionDiv.innerText = "Puntuación final: " + (puntajeFinal || 0);
+}
+
 function animate(){
     player.applyMovement()
     player.applyGravity()
+
+    frames++
+    if(frames % 60 === 0){
+        puntos++
+        puntosDiv.innerText = puntos
+    }
 
     enemies.forEach((enemy) => {
         enemy.move()
@@ -30,6 +47,7 @@ function animate(){
             player.positionY < enemy.positionY + enemy.height &&
             player.positionY + player.height > enemy.positionY
         ){
+            localStorage.setItem('puntos_finales', puntos);
             location.href = './gameover.html'
         }
     })
