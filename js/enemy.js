@@ -16,7 +16,7 @@ class Enemy{
 
     createEnemy(){
         this.enemyElem = document.createElement('img')
-        this.enemyElem.src = './assets/kenney_platformer-pack-redux/PNG/Enemies/Fly.png'
+        this.enemyElem.src = './assets/kenney_platformer-pack-redux/PNG/Enemies/fly.png'
         this.enemyElem.style.transform = 'scaleX(-1)'
         this.enemyElem.className = 'enemy'
 
