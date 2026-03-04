@@ -4,10 +4,10 @@ const enemies = []
 
 const bullets = []
 
-// setInterval(() => {
-//     const enemy =  new Enemy()
-//     enemies.push(enemy)
-// }, 1000)
+setInterval(() => {
+    const enemy =  new Enemy(enemies)
+    enemies.push(enemy)
+}, 1000)
 
 document.addEventListener('keydown',(e) => {
     player.keys[e.code] = true
@@ -16,7 +16,7 @@ document.addEventListener('keydown',(e) => {
     }
 
     if(e.code === 'Space'){
-        const bullet = new Bullet(player.positionX, player.width, player.positionY, player.height, player.scaleX)
+        const bullet = new Bullet(player.positionX, player.width, player.positionY, player.height, player.scaleX, bullets)
         bullets.push(bullet)
     }
 })
@@ -40,14 +40,16 @@ function animate(){
     player.applyMovement()
     player.applyGravity()
 
-    frames++
-    if(frames % 60 === 0){
-        points++
-        puntosDiv.innerText = points
-    }
-
     enemies.forEach((enemy) => {
         enemy.move()
+    })
+
+    bullets.forEach((bullet) => {
+        bullet.move()
+    })
+
+    enemies.forEach((enemy) => {
+
         if(
             player.positionX < enemy.positionX + enemy.width && 
             player.positionX + player.width > enemy.positionX &&
@@ -57,11 +59,26 @@ function animate(){
             localStorage.setItem('puntos_finales', points);
             location.href = './gameover.html'
         }
+
+        bullets.forEach((bullet) => {
+            if(
+                bullet.positionX < enemy.positionX + enemy.width && 
+                bullet.positionX + bullet.width > enemy.positionX &&
+                bullet.positionY < enemy.positionY + enemy.height &&
+                bullet.positionY + bullet.height > enemy.positionY
+            ){
+                enemy.removeEnemy()
+                bullet.removeBullet()
+                points += 10
+            }
+        })
     })
 
-    bullets.forEach((bullet) => {
-        bullet.move()
-    })
+    frames++
+    if(frames % 60 === 0){
+        points++
+        puntosDiv.innerText = points
+    }
 
     requestAnimationFrame(animate)
 }

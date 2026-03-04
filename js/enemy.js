@@ -1,10 +1,11 @@
 class Enemy{
-    constructor(){
+    constructor(enemiesArray){
         this.width = 5
         this.height = 9
         this.positionX = -(this.width) +1
         this.positionY = Math.round(Math.random() * (100-this.height))
         this.enemyElem = null
+        this.enemiesArray = enemiesArray
 
         setTimeout(() => {
             this.removeEnemy()
@@ -38,5 +39,9 @@ class Enemy{
 
     removeEnemy() {
         this.enemyElem.remove()
+        this.enemyElem = null
+
+        const index = this.enemiesArray.indexOf(this)
+        this.enemiesArray.splice(index, 1)
     }
 }
