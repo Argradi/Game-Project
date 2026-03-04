@@ -1,8 +1,8 @@
 class Bullet {
     constructor(positionX, width, positionY, height, scaleX) {
-        this.width = 5
-        this.height = 2
-        this.positionX = positionX
+        this.width = 2
+        this.height = 3
+        this.positionX = positionX + (width / 3)
         this.positionY = positionY + (height / 2)
         this.scaleX = scaleX
         this.bullElem = null
@@ -16,8 +16,7 @@ class Bullet {
     }
 
     createBullet() {
-        this.bullElem = document.createElement('img')
-        this.bullElem.src = './assets/kenney_platformer-pack-redux/PNG/Particles/fireball.png'
+        this.bullElem = document.createElement('div')
         this.bullElem.style.transform = `scaleX(${this.scaleX})`
         this.bullElem.className = 'bullet'
 

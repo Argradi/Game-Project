@@ -30,10 +30,37 @@ body{
 
 #player{
     position: absolute;
+    background-size:contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.stand{
+    background-image: url('../assets/kenney_platformer-pack-redux/PNG/Players/Variable sizes/Blue/alienBlue_stand.png');
+}
+
+.walk{
+    background-image: url('../assets/kenney_platformer-pack-redux/PNG/Players/Variable sizes/Blue/alienBlue_walk1.png');
+}
+
+.duck{
+    background-image: url('../assets/kenney_platformer-pack-redux/PNG/Players/Variable sizes/Blue/alienBlue_duck.png');
+}
+
+.jump{
+    background-image: url('../assets/kenney_platformer-pack-redux/PNG/Players/Variable sizes/Blue/alienBlue_jump.png');
+}
+
+.hit{
+    background-image: url('../assets/kenney_platformer-pack-redux/PNG/Players/Variable sizes/Blue/alienBlue_hit.png');
 }
 
 .enemy{
     position: absolute;
+    background-image: url('../assets/kenney_platformer-pack-redux/PNG/Enemies/fly.png');
+    background-size:contain;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .platform{
@@ -65,17 +92,21 @@ body{
     left: 40vw;
 }
 
-#puntos{
+#points{
     position: absolute;
     font-size: xx-large;
     left: 0;
     top: 0;
 }
 
-#puntuacion{
+#score{
     margin-top: 0;
 }
 
 .bullet{
     position: absolute;
+    background-image: url('../assets/kenney_platformer-pack-redux/PNG/Particles/fireball.png');
+    background-size:contain;
+    background-position: center;
+    background-repeat: no-repeat;
 }

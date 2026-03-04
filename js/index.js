@@ -4,13 +4,13 @@ const enemies = []
 
 const bullets = []
 
-setInterval(() => {
-    const enemy =  new Enemy()
-    enemies.push(enemy)
-}, 1000)
+// setInterval(() => {
+//     const enemy =  new Enemy()
+//     enemies.push(enemy)
+// }, 1000)
 
 document.addEventListener('keydown',(e) => {
-    player.teclas[e.code] = true
+    player.keys[e.code] = true
     if(e.code === 'ArrowUp'){
         player.jump()
     }
@@ -22,15 +22,15 @@ document.addEventListener('keydown',(e) => {
 })
 
 document.addEventListener('keyup',(e) => {
-    player.teclas[e.code] = false
+    player.keys[e.code] = false
 })
 
-const puntosDiv = document.getElementById('puntos')
-let puntos = 0
-let puntuacion = 0
+const puntosDiv = document.getElementById('points')
+let points = 0
+let score = 0
 let frames = 0
 
-const puntuacionDiv = document.getElementById('puntuacion')
+const puntuacionDiv = document.getElementById('score')
 if (puntuacionDiv) {
     const puntajeFinal = localStorage.getItem('puntos_finales');
     puntuacionDiv.innerText = "Puntuación final: " + (puntajeFinal || 0);
@@ -42,8 +42,8 @@ function animate(){
 
     frames++
     if(frames % 60 === 0){
-        puntos++
-        puntosDiv.innerText = puntos
+        points++
+        puntosDiv.innerText = points
     }
 
     enemies.forEach((enemy) => {
@@ -54,7 +54,7 @@ function animate(){
             player.positionY < enemy.positionY + enemy.height &&
             player.positionY + player.height > enemy.positionY
         ){
-            localStorage.setItem('puntos_finales', puntos);
+            localStorage.setItem('puntos_finales', points);
             location.href = './gameover.html'
         }
     })

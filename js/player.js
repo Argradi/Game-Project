@@ -4,21 +4,21 @@ class Player {
         if (!this.playerElem)
             return
 
-        this.width = 5
+        this.width = 6
         this.heightNormal = 17;
         this.heightCrouch = this.heightNormal / 1.5;
         this.height = this.heightNormal;
         this.positionX = 50 - (this.width / 2)
         this.positionY = 0
-        this.velocidadY = 0
-        this.velocidadX = 1
-        this.gravedad = 0.5
+        this.velocityY = 0
+        this.velocityX = 1
+        this.gravity = 0.5
         this.scaleX = 1
         this.isJumping = false
         this.isCrounching = false
         this.isInFloor = true
         this.isRunning = false
-        this.teclas = []
+        this.keys = []
         this.frames = 0
 
         this.updateUi()
@@ -34,40 +34,48 @@ class Player {
     }
 
     changeImage() {
+        let currentClass = ''
+
         if (!this.isInFloor) {
-            this.playerElem.src = this.velocidadY < 0
-                ? './assets/kenney_platformer-pack-redux/PNG/Players/Variable sizes/Blue/alienBlue_hit.png'
-                : './assets/kenney_platformer-pack-redux/PNG/Players/Variable sizes/Blue/alienBlue_jump.png';
+            if(this.velocityY < 0) {
+                currentClass = 'hit'
+            } else{
+                currentClass = 'jump'
+            }
         } else if (this.isCrounching) {
-            this.playerElem.src = './assets/kenney_platformer-pack-redux/PNG/Players/Variable sizes/Blue/alienBlue_duck.png'
+            currentClass = 'duck'
         } else if (this.isRunning) {
-            this.playerElem.src = './assets/kenney_platformer-pack-redux/PNG/Players/Variable sizes/Blue/alienBlue_walk1.png'
+            currentClass = 'walk'
         } else {
-            this.playerElem.src = './assets/kenney_platformer-pack-redux/PNG/Players/Variable sizes/Blue/alienBlue_stand.png'
+            currentClass = 'stand'
         }
+
+        this.playerElem.classList.remove('hit', 'jump', 'duck', 'walk', 'stand')
+
+        this.playerElem.classList.add(currentClass);
     }
 
     applyMovement() {
-        if (this.teclas['ArrowRight'] && this.positionX < (100 - this.width)) {
-            this.positionX += this.velocidadX
+        if (this.keys['ArrowRight'] && this.positionX < (100 - this.width)) {
+            this.positionX += this.velocityX
             this.scaleX = 1
             this.isRunning = true
-        } else if (this.teclas['ArrowLeft'] && this.positionX > 0) {
-            this.positionX -= this.velocidadX
+        } else if (this.keys['ArrowLeft'] && this.positionX > 0) {
+            this.positionX -= this.velocityX
             this.scaleX = -1
             this.isRunning = true
         } else {
             this.isRunning = false
         }
 
-        if (this.teclas['ArrowDown'] && !this.isJumping) {
+        if (this.keys['ArrowDown'] && !this.isJumping) {
             this.height = this.heightCrouch
             this.isCrounching = true
-            this.velocidadX = 0.4
+            this.velocityX = 0.4
         } else {
             this.height = this.heightNormal
             this.isCrounching = false
-            this.velocidadX = 1
+            this.velocityX = 1
         }
 
         this.updateUi()
@@ -76,7 +84,7 @@ class Player {
 
     jump() {
         if (!this.isJumping && !this.isCrounching && this.isInFloor) {
-            this.velocidadY = 6.5
+            this.velocityY = 6.5
             this.isJumping = true
             this.isInFloor = false
         }
@@ -85,13 +93,13 @@ class Player {
     }
 
     applyGravity() {
-        this.velocidadY -= this.gravedad
+        this.velocityY -= this.gravity
 
-        if (this.velocidadY < 0) {
+        if (this.velocityY < 0) {
             this.isInFloor = false
         }
 
-        this.positionY += this.velocidadY
+        this.positionY += this.velocityY
 
         const platforms = document.querySelectorAll('.platform')
 
@@ -103,14 +111,14 @@ class Player {
             const platWidth = this.pxToVw(style.width)
 
             if (
-                this.velocidadY < 0 &&
+                this.velocityY < 0 &&
                 this.positionY <= platBottom + platHeight &&
                 this.positionY > platBottom &&
                 this.positionX + this.width > platLeft &&
                 this.positionX < platLeft + platWidth
             ) {
                 this.positionY = platBottom + platHeight
-                this.velocidadY = 0
+                this.velocityY = 0
                 this.isJumping = false
                 this.isInFloor = true
             }
@@ -118,7 +126,7 @@ class Player {
 
         if (this.positionY <= 0) {
             this.positionY = 0
-            this.velocidadY = 0
+            this.velocityY = 0
             this.isJumping = false
             this.isInFloor = true
         }
