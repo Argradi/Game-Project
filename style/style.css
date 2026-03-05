@@ -94,6 +94,7 @@ body{
 
 #points{
     position: absolute;
+    font-family: 'Arial Black', sans-serif;
     font-size: xx-large;
     left: 0;
     top: 0;
@@ -117,4 +118,179 @@ body{
     background-size:contain;
     background-position: center;
     background-repeat: no-repeat;
+}
+
+#board3{
+    position: relative;
+    background-image: url('../assets/kenney_platformer-pack-redux/PNG/Backgrounds/colored_grass.png');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+#titulo{
+    color: rgb(50, 50, 106);
+    font-family: 'Arial Black', sans-serif;
+    font-size: 5vw;
+    text-shadow:
+     -0.2vw -0.2vw blanchedalmond,
+     0.2vw -0.2vw blanchedalmond,
+     -0.2vw 0.2vw blanchedalmond,
+     0.2vw 0.2vw blanchedalmond;
+    position: absolute;
+    top: 10vh;
+}
+
+.button{
+    position: absolute;
+    background-image: url('../assets/kenney_platformer-pack-redux/PNG/Ground/Grass/grassMid.png');
+    padding: 2vh;
+    width: 20vw;
+    height: 10vh;
+    border-radius: 15px;
+    box-shadow: 0.1vw 0.2vh gray;
+    font-family: 'Arial Black', sans-serif;
+    color: blanchedalmond;
+    font-size: larger;
+}
+
+#play-button{
+    bottom: 50vh;
+}
+
+#controls-button{
+    bottom: 35vh;
+}
+
+.button2{
+    position: absolute;
+    background-image: url('../assets/kenney_platformer-pack-redux/PNG/Ground/Snow/snowMid.png');
+    width: 20vw;
+    height: 7vh;
+    border-radius: 15px;
+    box-shadow: 0.1vw 0.2vh gray;
+    font-family: 'Arial Black', sans-serif;
+    color: black;
+    font-size: large;
+}
+
+#again-button{
+    bottom: 30vh;
+}
+
+#start-button{
+    bottom: 20vh;
+}
+
+#controls{
+    position: absolute;
+    visibility: hidden;
+    background-image: url('../assets/kenney_platformer-pack-redux/PNG/Ground/Grass/grassCenter.png');
+    background-position: center;
+    bottom: 30vh;
+    left: 35vw;
+    width: 30vw;
+    height: 40vh;
+    border-radius: 1vw;
+}
+
+.arrow{
+    position: absolute;
+    background-color: white;
+    width: 3vw;
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.5vw;
+    box-shadow: 0.2vw 0.2vw lightgray;
+}
+
+#arr-left{
+    position: absolute;
+    top: 10vh;
+    left: 2vw;
+}
+
+#arr-up{
+    position: absolute;
+    top: 4vh;
+    left: 5.5vw;
+}
+
+#arr-right{
+    position: absolute;
+    top: 10vh;
+    left: 9vw;
+}
+
+#arr-down{
+    position: absolute;
+    top: 10vh;
+    left: 5.5vw;
+}
+
+#space{
+    position: absolute;
+    background-color: white;
+    width: 10vw;
+    height: 5vh;
+    bottom: 9vh;
+    left: 2vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.5vw;
+    box-shadow: 0.2vw 0.2vw lightgray;
+}
+
+#arrow1{
+    position: absolute;
+    left: 15vw;
+    top: 8vh;
+    font-size: xx-large;
+}
+
+#arrow2{
+    position: absolute;
+    left: 15vw;
+    bottom: 9vh;
+    font-size: xx-large;
+}
+
+#mov{
+    position: absolute;
+    left: 20vw;
+    top: 9vh;
+    font-size: larger;
+}
+
+#shot{
+    position: absolute;
+    left: 21vw;
+    bottom: 10vh;
+    font-size: larger;
+}
+
+#close{
+    position: absolute;
+    background-color: white;
+    width: 5vw;
+    height: 3vh;
+    bottom: 2vh;
+    right: 2vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.5vw;
+    box-shadow: 0.2vw 0.2vw lightgray;
+}
+
+#controls.visible{
+    visibility: visible;
 }

@@ -1,3 +1,44 @@
+let playBtn = document.getElementById('play-button')
+
+if(playBtn){
+    playBtn.addEventListener('click', () => {
+        location.href = './main.html'
+    })
+}
+
+let againBtn = document.getElementById('again-button')
+
+if(againBtn){
+    againBtn.addEventListener('click', () => {
+        location.href = './main.html'
+    })
+}
+
+let startBtn = document.getElementById('start-button')
+
+if(startBtn){
+    startBtn.addEventListener('click', () => {
+        location.href = './index.html'
+    })
+}
+
+let ctrlBtn = document.getElementById('controls-button')
+let ctrls = document.getElementById('controls')
+
+if(ctrlBtn){
+    ctrlBtn.addEventListener('click', () => {
+        ctrls.classList.toggle('visible')
+    })
+}
+
+let ctrlCls = document.getElementById('close')
+
+if(ctrlCls){
+    ctrlCls.addEventListener('click', () => {
+        ctrls.classList.toggle('visible')
+    })
+}
+
 const player = new Player()
 
 const enemies = []
